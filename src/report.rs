@@ -66,8 +66,14 @@ mod tests {
     #[test]
     fn test_format_filters_below_threshold() {
         let report = make_report(vec![
-            ServiceCost { service_name: "EC2".into(), amount: 10.0 },
-            ServiceCost { service_name: "Tiny".into(), amount: 0.005 },
+            ServiceCost {
+                service_name: "EC2".into(),
+                amount: 10.0,
+            },
+            ServiceCost {
+                service_name: "Tiny".into(),
+                amount: 0.005,
+            },
         ]);
         let lines = format_service_costs(&report);
         assert_eq!(lines.len(), 1);
@@ -76,9 +82,10 @@ mod tests {
 
     #[test]
     fn test_format_includes_threshold_exactly() {
-        let report = make_report(vec![
-            ServiceCost { service_name: "S3".into(), amount: 0.01 },
-        ]);
+        let report = make_report(vec![ServiceCost {
+            service_name: "S3".into(),
+            amount: 0.01,
+        }]);
         let lines = format_service_costs(&report);
         assert_eq!(lines.len(), 1);
         assert!(lines[0].contains("0.01 USD"));

@@ -4,7 +4,10 @@ use chrono::{Datelike, Duration, Local};
 pub fn get_date_range() -> (String, String) {
     let today = Local::now().date_naive();
     let start = today.with_day(1).expect("day 1 always valid");
-    (start.format("%Y-%m-%d").to_string(), today.format("%Y-%m-%d").to_string())
+    (
+        start.format("%Y-%m-%d").to_string(),
+        today.format("%Y-%m-%d").to_string(),
+    )
 }
 
 /// 表示用ラベルを返す。
@@ -43,6 +46,9 @@ mod tests {
     #[test]
     fn test_get_date_range_start_is_first_of_month() {
         let (start, _end) = get_date_range();
-        assert!(start.ends_with("-01"), "start should be first of month: {start}");
+        assert!(
+            start.ends_with("-01"),
+            "start should be first of month: {start}"
+        );
     }
 }

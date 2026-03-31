@@ -7,7 +7,7 @@ use anyhow::Result;
 use aws_config::BehaviorVersion;
 use aws_sdk_costexplorer::config::Region;
 
-use cost::{CreditMode, fetch_cost_report, get_account_id};
+use cost::{fetch_cost_report, get_account_id, CreditMode};
 use report::print_report;
 
 async fn run() -> Result<()> {

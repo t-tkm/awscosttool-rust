@@ -118,7 +118,10 @@ pub async fn fetch_cost_report(
                 .unwrap_or("0")
                 .parse()
                 .unwrap_or(0.0);
-            Some(ServiceCost { service_name: name, amount })
+            Some(ServiceCost {
+                service_name: name,
+                amount,
+            })
         })
         .collect();
 
@@ -158,9 +161,18 @@ mod tests {
     fn test_total_from_groups() {
         // Total が空の場合、Groups から合算されることを確認するロジックテスト
         let services = vec![
-            ServiceCost { service_name: "EC2".into(), amount: 10.5 },
-            ServiceCost { service_name: "S3".into(), amount: -1.0 }, // 負値
-            ServiceCost { service_name: "RDS".into(), amount: 5.0 },
+            ServiceCost {
+                service_name: "EC2".into(),
+                amount: 10.5,
+            },
+            ServiceCost {
+                service_name: "S3".into(),
+                amount: -1.0, // 負値
+            },
+            ServiceCost {
+                service_name: "RDS".into(),
+                amount: 5.0,
+            },
         ];
         let total: f64 = services.iter().map(|s| s.amount.max(0.0)).sum();
         assert!((total - 15.5).abs() < 1e-9);
