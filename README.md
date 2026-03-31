@@ -214,3 +214,22 @@ cargo fmt
 ## ライセンス
 
 [MIT](LICENSE)
+
+## 付録: クロスコンパイル
+
+`cargo build --release` は実行しているマシンのアーキテクチャ向けのバイナリのみを生成します。
+
+他プラットフォーム向けのバイナリを手元で作るにはクロスコンパイルが必要で、ツールチェーンの追加インストールが必要になります。
+
+```bash
+# 例: M1 Mac から Intel Mac 向けをビルド
+rustup target add x86_64-apple-darwin
+cargo build --release --target x86_64-apple-darwin
+```
+
+Linux や Windows 向けはさらに複雑（リンカの追加が必要）なため、GitHub Actions の release ワークフローに任せることにする。タグを push すれば全プラットフォーム分が自動でビルドされて Releases に添付される。
+
+```bash
+git tag v0.1.0
+git push origin v0.1.0
+```
