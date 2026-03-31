@@ -140,13 +140,31 @@ export AWS_DEFAULT_REGION=us-east-1
 ./target/release/aws-cost-report
 ```
 
-## ビルド
+## インストール
+
+### バイナリをダウンロード（推奨）
+
+[Releases](https://github.com/t-tkm/awscosttool-rust/releases) から使用環境に合ったバイナリをダウンロードしてください。
+
+| ファイル名 | 対象環境 |
+|---|---|
+| `aws-cost-report-*-aarch64-apple-darwin.tar.gz` | M1/M2/M3 Mac |
+| `aws-cost-report-*-x86_64-apple-darwin.tar.gz` | Intel Mac |
+| `aws-cost-report-*-x86_64-unknown-linux-gnu.tar.gz` | Linux x86_64 |
+| `aws-cost-report-*-aarch64-unknown-linux-gnu.tar.gz` | Linux ARM64 |
+| `aws-cost-report-*-x86_64-pc-windows-msvc.zip` | Windows x86_64 |
+
+```bash
+# 例: M1 Mac の場合
+tar xzf aws-cost-report-v0.1.0-aarch64-apple-darwin.tar.gz
+./aws-cost-report
+```
+
+### ソースからビルド
 
 ```bash
 cargo build --release
 ```
-
-ビルド成功後、バイナリは `target/release/aws-cost-report` に生成されます。
 
 ## 実行
 
