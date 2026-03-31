@@ -1,0 +1,20 @@
+# Rust
+/target/
+# Cargo.lock はバイナリクレートのためコミット対象（ライブラリの場合は除外）
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# macOS
+.DS_Store
+
+# 環境変数ファイル
+.env
+.env.*
+
+# AI-DLC ドキュメント（開発プロセス用）
+# 設計の意思決定の経緯を残すためにgit管理とする
+# aidlc-docs/
