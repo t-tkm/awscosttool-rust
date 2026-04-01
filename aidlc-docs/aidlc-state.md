@@ -38,8 +38,14 @@
 - [ ] Operations - PLACEHOLDER
 
 ## Current Status
-- **Lifecycle Phase**: INCEPTION → CONSTRUCTION
-- **Next Stage**: Functional Design
+- **Lifecycle Phase**: CONSTRUCTION（初期実装完了後の保守・ドキュメント同期）
+- **Next Stage**: 変更に応じて Functional Design / Requirements / Build ドキュメントを追随
+
+## 変更履歴（ドキュメント同期）
+| 日付 | 内容 |
+|---|---|
+| 2026-04-01 | PR #2: Cost Explorer `TimePeriod` 月初補正を要件・BR・業務モデル・ドメイン・code-summary に反映 |
+| 2026-04-01 | PR #3: GitHub Release の macOS `.zip` 化・README の利用者向け手順を NFR・ビルド系 aidlc に反映。ユニットテスト件数を 10 に更新 |
 
 ## Extension Configuration
 | Extension | Enabled | Decided At |

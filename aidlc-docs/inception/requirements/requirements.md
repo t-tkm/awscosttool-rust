@@ -12,7 +12,7 @@
 ## Functional Requirements
 
 ### FR-01: AWS Cost Explorer によるコスト取得
-- AWS Cost Explorer API (`GetCostAndUsage`) を呼び出し、当月1日〜当日のコストを取得する
+- AWS Cost Explorer API (`GetCostAndUsage`) を呼び出し、当月1日から実行日までのコストを取得する（`TimePeriod` の詳細は FR-06）
 - 集計粒度: MONTHLY
 - メトリクス: AmortizedCost
 - グループ化: SERVICE ディメンション
@@ -36,8 +36,9 @@
 - 0.01 USD 未満のサービスは表示しない（DEBUG ログに記録）
 
 ### FR-06: 集計期間の自動計算
-- 開始日: 当月1日
-- 終了日: 当日（Cost Explorer API の End は当日 0:00 を指すため、表示上は前日まで）
+- 開始日: 当月1日（`TimePeriod.Start`）
+- API 用終了日（`TimePeriod.End`）: 通常は実行日（当日）。Cost Explorer は `End` を**排他**とし、`Start` より後である必要があるため、**実行日が当月1日のときだけ** `End` を「月初の翌日」に補正する（`Start` と同一日を避ける）
+- 表示ラベル: `End` は当日 0:00 前を指すため、画面上の終了日は「API 用 `End` の日付 − 1 日」として扱う（例: `End=2026-04-02` なら表示は 04/01 まで）
 
 ---
 
