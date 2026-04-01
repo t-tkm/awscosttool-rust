@@ -1,12 +1,24 @@
-use chrono::{Datelike, Duration, Local};
+use chrono::{Datelike, Duration, Local, NaiveDate};
 
-/// 集計期間を返す。(start, end) = (当月1日, 当日) の ISO 8601 文字列。
+/// 集計期間を返す。`Start` は当月1日、`End` は通常は当日（ISO 8601）。
+///
+/// Cost Explorer の `TimePeriod.End` は排他であり、`Start` より後である必要がある。
+/// 月初当日だけ `Start` と「今日」を `End` にすると同一日になり無効になるため、
+/// その場合は `End` を月初の翌日に補正する。
 pub fn get_date_range() -> (String, String) {
-    let today = Local::now().date_naive();
-    let start = today.with_day(1).expect("day 1 always valid");
+    get_date_range_for(Local::now().date_naive())
+}
+
+fn get_date_range_for(today: NaiveDate) -> (String, String) {
+    let month_start = today.with_day(1).expect("day 1 always valid");
+    let end_date = if today > month_start {
+        today
+    } else {
+        month_start + Duration::days(1)
+    };
     (
-        start.format("%Y-%m-%d").to_string(),
-        today.format("%Y-%m-%d").to_string(),
+        month_start.format("%Y-%m-%d").to_string(),
+        end_date.format("%Y-%m-%d").to_string(),
     )
 }
 
@@ -50,5 +62,23 @@ mod tests {
             start.ends_with("-01"),
             "start should be first of month: {start}"
         );
+    }
+
+    #[test]
+    fn test_get_date_range_first_of_month_end_is_next_day() {
+        let (start, end) = super::get_date_range_for(
+            NaiveDate::from_ymd_opt(2026, 3, 1).expect("valid date"),
+        );
+        assert_eq!(start, "2026-03-01");
+        assert_eq!(end, "2026-03-02");
+    }
+
+    #[test]
+    fn test_get_date_range_mid_month_unchanged() {
+        let (start, end) = super::get_date_range_for(
+            NaiveDate::from_ymd_opt(2026, 3, 15).expect("valid date"),
+        );
+        assert_eq!(start, "2026-03-01");
+        assert_eq!(end, "2026-03-15");
     }
 }
