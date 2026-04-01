@@ -66,18 +66,16 @@ mod tests {
 
     #[test]
     fn test_get_date_range_first_of_month_end_is_next_day() {
-        let (start, end) = super::get_date_range_for(
-            NaiveDate::from_ymd_opt(2026, 3, 1).expect("valid date"),
-        );
+        let (start, end) =
+            super::get_date_range_for(NaiveDate::from_ymd_opt(2026, 3, 1).expect("valid date"));
         assert_eq!(start, "2026-03-01");
         assert_eq!(end, "2026-03-02");
     }
 
     #[test]
     fn test_get_date_range_mid_month_unchanged() {
-        let (start, end) = super::get_date_range_for(
-            NaiveDate::from_ymd_opt(2026, 3, 15).expect("valid date"),
-        );
+        let (start, end) =
+            super::get_date_range_for(NaiveDate::from_ymd_opt(2026, 3, 15).expect("valid date"));
         assert_eq!(start, "2026-03-01");
         assert_eq!(end, "2026-03-15");
     }
