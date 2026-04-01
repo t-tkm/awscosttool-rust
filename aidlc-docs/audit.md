@@ -118,3 +118,19 @@
 **Context**: CONSTRUCTION - Build and Test - Complete
 
 ---
+
+## Post-Merge: PR #2 - Cost Explorer 月初 TimePeriod 補正
+**Timestamp**: 2026-04-01T00:00:00Z
+**User Input**: 本日マージ PR（`get_date_range` 補正）に合わせ AI-DLC ドキュメントを更新
+**AI Response**: `requirements.md`（FR-01/FR-06）、`business-rules.md`（BR-01）、`business-logic-model.md`、`domain-entities.md`（CostPeriod）、`code-summary.md`（`date.rs` 説明）を更新
+**Context**: CONSTRUCTION - Requirements / Functional Design / Code Summary 同期
+
+---
+
+## Post-Merge: PR #3 - macOS リリース zip 化・README 手順
+**Timestamp**: 2026-04-01T00:00:00Z
+**User Input**: 本日 PR（Release ワークフローで Mac を zip、README に quarantine 等）に合わせ aidlc を更新
+**AI Response**: `build-and-test-summary.md`（リリース成果物形式・README 参照）、`build-instructions.md`（Releases 参照）、`nfr-requirements.md`（配布）、`tech-stack-decisions.md`（CI/リリース表）、`aidlc-state.md`（変更履歴）、ユニットテスト総数 10 件に修正
+**Context**: CONSTRUCTION - NFR / Build Documentation 同期
+
+---

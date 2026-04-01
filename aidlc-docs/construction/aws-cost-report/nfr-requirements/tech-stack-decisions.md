@@ -44,3 +44,12 @@ src/
 - テスト: `cargo test`
 - Lint: `cargo clippy -- -D warnings`
 - フォーマット: `cargo fmt --check`
+
+## CI / リリース（GitHub Actions）
+| 項目 | 内容 |
+|---|---|
+| CI | `.github/workflows/ci.yml`（フォーマット・Clippy・テスト） |
+| リリース | `.github/workflows/release.yml`（タグ `v*` で Linux / macOS / Windows 向け成果物を生成） |
+| macOS 成果物 | `.zip`（2026-04 以降。それ以前のリリースでは `.tar.gz` の場合あり） |
+| Linux 成果物 | `.tar.gz` |
+| Windows 成果物 | `.zip`（`.exe` を格納） |

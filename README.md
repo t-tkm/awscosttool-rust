@@ -192,7 +192,7 @@ RUST_LOG=debug ./target/release/aws-cost-report
 
 | 項目 | 内容 |
 |---|---|
-| 集計期間 | 当月1日〜当日 |
+| 集計期間 | 当月1日〜実行日まで。Cost Explorer の `TimePeriod.End` は排他で `Start` より後である必要があるため、**実行日が当月1日のときだけ** `End` を翌日に補正する |
 | メトリクス | AmortizedCost |
 | グループ化 | サービス別 |
 | リージョン | us-east-1 固定 |

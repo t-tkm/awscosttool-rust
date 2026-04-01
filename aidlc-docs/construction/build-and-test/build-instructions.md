@@ -58,3 +58,7 @@ Error: Failed to call STS GetCallerIdentity
 ```
 - `aws configure` または環境変数 `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY` / `AWS_SESSION_TOKEN` を確認
 - IAM ロールを使用する場合はロールに `sts:GetCallerIdentity` 権限があることを確認
+
+### プリビルドバイナリ（GitHub Releases）
+- ビルド済み成果物・展開形式・macOS の注意（quarantine 等）はリポジトリ直下 **`README.md`** を参照
+- リリースパイプラインの概要は `aidlc-docs/construction/build-and-test/build-and-test-summary.md` の「GitHub Actions リリース」を参照

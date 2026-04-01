@@ -7,7 +7,8 @@ main()
   |
   +-- 1. get_date_range()
   |       -> start = 当月1日 (YYYY-MM-DD)
-  |       -> end   = 当日    (YYYY-MM-DD)
+  |       -> end   = 通常は当日 (YYYY-MM-DD)
+  |           ※ 実行日が当月1日のみ end = 月初の翌日（API の Start < End 制約）
   |
   +-- 2. get_account_id(sts_client)
   |       -> STS GetCallerIdentity -> account_id: String
@@ -72,10 +73,23 @@ print_report(report):
   5. 区切り線を出力
 ```
 
+## get_date_range（API 用）
+
+```
+month_start = 実行日の当月1日
+if 実行日 > month_start:
+    end = 実行日
+else:
+    end = month_start + 1 日   // 月初のみ補正
+return (month_start, end)     // いずれも "YYYY-MM-DD"
+```
+
 ## 表示ラベル計算
 
 ```
-start_label = 当月1日.format("%m/%d")          // 例: "03/01"
-end_label   = (当日 - 1日).format("%m/%d")     // 例: "03/30"
-              ※ Cost Explorer の End は当日 0:00 を指すため表示上は前日
+start_date  = parse(Start)
+end_date    = parse(End)   // API に渡した End
+start_label = start_date.format("%m/%d")
+end_label   = (end_date - 1日).format("%m/%d")
+              ※ Cost Explorer の End はその日 0:00・排他のため、表示は「End の前日」まで
 ```

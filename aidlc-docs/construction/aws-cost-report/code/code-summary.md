@@ -7,7 +7,7 @@
 | `Cargo.toml` | プロジェクト定義・依存クレート |
 | `src/main.rs` | エントリポイント、`run()` メイン処理フロー |
 | `src/config.rs` | 定数定義 |
-| `src/date.rs` | 日付計算（集計期間・表示ラベル） |
+| `src/date.rs` | 日付計算（集計期間・表示ラベル）。月初実行時は API 用 `End` を翌日に補正 |
 | `src/cost.rs` | AWS API 呼び出し、データ構造定義 |
 | `src/report.rs` | レポートフォーマット・標準出力表示 |
 

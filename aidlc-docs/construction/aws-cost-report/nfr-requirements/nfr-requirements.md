@@ -24,3 +24,9 @@
 - **フレームワーク**: `env_logger` または `tracing` + `tracing-subscriber`
 - **レベル**: INFO（通常実行）、DEBUG（除外サービスの詳細）、ERROR（API 失敗）
 - **制御**: `RUST_LOG` 環境変数で制御可能
+
+## 配布（GitHub Releases）
+- **CI**: タグ `v*` push でマルチターゲットビルドし、GitHub Release にバイナリアーカイブを添付
+- **macOS / Windows**: `.zip`（利用者が OS 標準の展開で扱いやすい形）
+- **Linux**: `.tar.gz`
+- **ドキュメント**: 入手・展開・macOS の quarantine 対処はリポジトリ `README.md` を正とする
