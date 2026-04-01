@@ -148,17 +148,21 @@ export AWS_DEFAULT_REGION=us-east-1
 
 | ファイル名 | 対象環境 |
 |---|---|
-| `aws-cost-report-*-aarch64-apple-darwin.tar.gz` | M1/M2/M3 Mac |
-| `aws-cost-report-*-x86_64-apple-darwin.tar.gz` | Intel Mac |
+| `aws-cost-report-*-aarch64-apple-darwin.zip` | M1/M2/M3 Mac |
+| `aws-cost-report-*-x86_64-apple-darwin.zip` | Intel Mac |
 | `aws-cost-report-*-x86_64-unknown-linux-gnu.tar.gz` | Linux x86_64 |
 | `aws-cost-report-*-aarch64-unknown-linux-gnu.tar.gz` | Linux ARM64 |
 | `aws-cost-report-*-x86_64-pc-windows-msvc.zip` | Windows x86_64 |
 
+#### macOS: ダウンロード直後に実行できない場合
+
+ブラウザ経由で取得したバイナリには **隔離（quarantine）** が付くことがあり、「開発元が未確認のため開けません」などで実行できないことがあります。そのときは、展開した `aws-cost-report` に対して隔離属性を外してください。
+
 ```bash
-# 例: M1 Mac の場合
-tar xzf aws-cost-report-v0.1.0-aarch64-apple-darwin.tar.gz
-./aws-cost-report
+xattr -d com.apple.quarantine aws-cost-report
 ```
+
+パスを含める場合は、実際の場所に合わせてください。属性がない環境ではこのコマンドはエラーになるので、その場合は無視してかまいません。必要に応じて `chmod +x aws-cost-report` も確認してください。
 
 ### ソースからビルド
 
